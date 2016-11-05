@@ -1,10 +1,9 @@
 <?php
 $values = file_get_contents("q.txt");
 $start = microtime(true);
-$answer = "answer.txt";
 $convert = explode("\n", $values);
-  for($i = 0; $i < count($convert); $i++){
-    $lines[] = $convert[$i];
+  foreach($convert as $val){
+    $lines[] = $val;
   }
 $count_array = array_count_values($lines);
   foreach($count_array as $key => $value){
@@ -23,5 +22,5 @@ $time = ($end - $start) * 1000;
       echo $txt[$i] . "<br>";
   }
   echo "で処理速度は". $time . "秒です。<br>";
-  file_put_contents($answer, $txt);
+  file_put_contents("./answer.txt", $txt);
   ?>

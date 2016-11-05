@@ -2,8 +2,8 @@
 $values = file_get_contents("q.txt");
 $start = microtime(true);
 $convert = explode("\n", $values);
-  for($i = 0; $i < count($convert); $i++){
-    $lines[] = $convert[$i];
+  foreach ($convert as $value) {
+    $lines = $convert;
   }
 $count_array = array_count_values($lines);
   foreach($count_array as $value){

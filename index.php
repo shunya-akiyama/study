@@ -4,8 +4,8 @@ $values = file_get_contents("q.txt");
 $start = microtime(true);
 $answer = "answer.txt";
 $convert = explode("\n", $values);
-  for($i = 0; $i < count($convert); $i++){
-    $lines[] = $convert[$i];
+  foreach($convert as $val){
+    $lines[] = $val;
   }
 $count_array = array_count_values($lines);
   foreach($count_array as $key => $value){
@@ -30,9 +30,9 @@ $time = ($end - $start) * 1000;
   $values2 = file_get_contents("q.txt");
   $start2 = microtime(true);
   $convert2 = explode("\n", $values2);
-    for($i = 0; $i < count($convert2); $i++){
-      $lines2[] = $convert2[$i];
-    }
+  foreach ($convert2 as $value) {
+    $lines2 = $convert2;
+  }
   $count_array2 = array_count_values($lines2);
     foreach($count_array2 as $value2){
         if(2 == $value2){
