@@ -1,19 +1,22 @@
 <?php
-$values = file_get_contents("q.txt");
+ini_set('memory_limit', '10000M');
+$filename = 'q2.txt';
+$fp = fopen($filename, 'r');
 $start = microtime(true);
-$convert = explode("\n", $values);
-  foreach ($convert as $value) {
-    $lines = $convert;
+while(!feof($fp)){
+  if(false !== fgets($fp)){
+    $values[] = fgets($fp);
   }
-$count_array = array_count_values($lines);
-  foreach($count_array as $value){
-      if(2 == $value){
-        $count[] = $value;
+}
+fclose($fp);
+$count_array = array_count_values($values);
+  foreach($count_array as $key => $value){
+      if(2 === $value){
+          $count[] =  $key;
       }
   }
 $end = microtime(true);
-$time = ($end - $start) * 1000;
-  echo "2回出現した値の数は" . "<br>";
-  echo count($count) . "個です。<br>";
-  echo "処理速度は" . $time . "です。";
+$time = $end - $start;
+  echo count($count) . "個";
+  echo "処理速度は" . $time;
  ?>

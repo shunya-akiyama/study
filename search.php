@@ -1,26 +1,28 @@
 <?php
-$values = file_get_contents("q.txt");
+ini_set('memory_limit', '10000M');
+/*----------------------処理1------------------------------*/
+$filename = 'q2.txt';
+$fp = fopen($filename, 'r');
 $start = microtime(true);
-$convert = explode("\n", $values);
-  foreach($convert as $val){
-    $lines[] = $val;
+while(!feof($fp)){
+  if(false !== fgets($fp)){
+    $value[] = fgets($fp);
   }
-$count_array = array_count_values($lines);
+}
+fclose($fp);
+$count_array = array_count_values($value);
   foreach($count_array as $key => $value){
-      if(2 == $value){
-          $result[] =  intval($key);
+      if(2 === $value){
+          $result[] =  $key;
       }
   }
   sort($result);
-  foreach ($result as $cnt => $val) {
+  foreach ($result as $val) {
       $txt[] = $val . "\n";
   }
 $end = microtime(true);
-$time = ($end - $start) * 1000;
-  echo "2回出現した値は" . "<br>";
-  for($i = 0; $i < count($txt); $i++){
-      echo $txt[$i] . "<br>";
-  }
-  echo "で処理速度は". $time . "秒です。<br>";
-  file_put_contents("./answer.txt", $txt);
-  ?>
+$time = $end - $start;
+  echo '処理速度'. $time;
+  $answer = 'answer2.txt';
+  file_put_contents($answer, $txt);
+?>
